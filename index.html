@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContentCraft AI</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#" data-page="dashboard">
+      <span class="logo">✦</span> ContentCraft
+    </a>
+
+    <p class="nav-heading">WORKSPACE</p>
+    <button class="nav active" data-page="dashboard">▦ Dashboard</button>
+    <button class="nav" data-page="writer">✎ AI Writer</button>
+    <button class="nav" data-page="history">◷ Content History</button>
+    <button class="nav" data-page="settings">⚙ Settings</button>
+
+    <div class="sidebar-bottom">
+      <div class="avatar">CC</div>
+      <div>
+        <strong>My Workspace</strong>
+        <small>Content creator</small>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <span>Workspace / <strong id="breadcrumb">Dashboard</strong></span>
+      <span class="status"><i></i> Creative workspace</span>
+    </header>
+
+    <section class="page" id="dashboard">
+      <div class="welcome">
+        <span class="eyebrow">YOUR CREATIVE WORKSPACE</span>
+        <h1>Bring your ideas to life.</h1>
+        <p>Create, organize, and prepare engaging content in one place.</p>
+      </div>
+
+      <div class="hero">
+        <div>
+          <span class="hero-label">YOUR AI WRITING STUDIO</span>
+          <h2>Words that work for you.</h2>
+          <p>Turn your ideas into blogs and social media content.</p>
+          <button class="light-button" data-page="writer">
+            Start writing <span>→</span>
+          </button>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-card card-one">✍️<br><small>Write</small></div>
+          <div class="art-card card-two">✦<br><small>Create</small></div>
+          <div class="art-card card-three">↗<br><small>Share</small></div>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div><h2>Your workspace</h2><p>Quick access to your tools.</p></div>
+      </div>
+
+      <div class="stats-grid">
+        <article class="stat-card">
+          <span class="stat-icon purple">✎</span>
+          <p>Writing studio</p><h3>Create content</h3>
+          <button class="text-button" data-page="writer">Open writer →</button>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon blue">◷</span>
+          <p>Saved drafts</p><h3 id="draftCount">0 drafts</h3>
+          <button class="text-button" data-page="history">View history →</button>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon orange">⚙</span>
+          <p>Personalize</p><h3>Your preferences</h3>
+          <button class="text-button" data-page="settings">Open settings →</button>
+        </article>
+      </div>
+
+      <div class="section-heading">
+        <div><h2>Start with an idea</h2><p>Choose a format to begin.</p></div>
+      </div>
+
+      <div class="format-grid">
+        <button class="format-card" data-format="Blog Post" data-page="writer">
+          <span>📄</span><strong>Blog post</strong><small>Articles and stories</small>
+        </button>
+        <button class="format-card" data-format="Instagram Caption" data-page="writer">
+          <span>📸</span><strong>Instagram</strong><small>Captions and hashtags</small>
+        </button>
+        <button class="format-card" data-format="LinkedIn Post" data-page="writer">
+          <span>💼</span><strong>LinkedIn</strong><small>Professional posts</small>
+        </button>
+      </div>
+    </section>
+
+    <section class="page hidden" id="writer">
+      <div class="welcome">
+        <span class="eyebrow">CONTENT CREATION</span>
+        <h1>Your AI writing studio.</h1>
+        <p>Choose your format, describe your idea, and prepare a draft.</p>
+      </div>
+
+      <div class="writer-grid">
+        <form class="panel" id="writerForm">
+          <div class="panel-heading">
+            <div><h2>Create content</h2><p>Customize your draft.</p></div>
+            <span class="tag">✦ Writer</span>
+          </div>
+
+          <label for="contentType">Content format</label>
+          <select id="contentType">
+            <option>Blog Post</option>
+            <option>Instagram Caption</option>
+            <option>LinkedIn Post</option>
+            <option>Facebook Post</option>
+          </select>
+
+          <label for="topic">What's your topic?</label>
+          <textarea id="topic" rows="4" maxlength="500"
+            placeholder="Example: How AI helps college students"></textarea>
+
+          <label for="audience">Target audience</label>
+          <input id="audience" placeholder="e.g. College students">
+
+          <div class="two-col">
+            <div>
+              <label for="tone">Writing tone</label>
+              <select id="tone">
+                <option>Professional</option>
+                <option>Friendly</option>
+                <option>Creative</option>
+                <option>Informative</option>
+                <option>Casual</option>
+              </select>
+            </div>
+            <div>
+              <label for="length">Length</label>
+              <select id="length">
+                <option>Short</option>
+                <option selected>Medium</option>
+                <option>Long</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="primary-button" type="submit">✦ Prepare draft</button>
+          <p class="hint">Frontend demo: this creates a sample draft, not AI-generated content.</p>
+        </form>
+
+        <div class="panel output-panel">
+          <div class="panel-heading">
+            <div><h2>Your draft</h2><p id="outputSubtitle">Your preview appears here.</p></div>
+            <span class="tag">Preview</span>
+          </div>
+          <div id="emptyOutput" class="empty-output">
+            <span>✧</span><h3>Your next idea starts here.</h3>
+            <p>Enter a topic to prepare your first sample draft.</p>
+          </div>
+          <div id="outputArea" class="hidden">
+            <textarea id="outputText" class="output-text" aria-label="Editable draft"></textarea>
+            <div class="output-actions">
+              <button class="secondary-button" id="copyButton" type="button">Copy text</button>
+              <button class="secondary-button" id="downloadButton" type="button">Download</button>
+              <button class="primary-button small-button" id="saveButton" type="button">Save draft</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page hidden" id="history">
+      <div class="welcome">
+        <span class="eyebrow">YOUR LIBRARY</span>
+        <h1>Content history.</h1>
+        <p>Review your saved drafts from this browser.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-heading">
+          <div><h2>Saved drafts</h2><p>Your locally saved content.</p></div>
+          <button class="secondary-button" id="clearHistory">Clear history</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+      </div>
+    </section>
+
+    <section class="page hidden" id="settings">
+      <div class="welcome">
+        <span class="eyebrow">PREFERENCES</span>
+        <h1>Make it yours.</h1>
+        <p>Set your default writing preferences.</p>
+      </div>
+      <div class="panel settings-panel">
+        <h2>Writing preferences</h2>
+        <label for="defaultTone">Default tone</label>
+        <select id="defaultTone">
+          <option>Professional</option>
+          <option>Friendly</option>
+          <option>Creative</option>
+          <option>Informative</option>
+          <option>Casual</option>
+        </select>
+        <label for="defaultAudience">Default audience</label>
+        <input id="defaultAudience" placeholder="e.g. Students and beginners">
+        <button class="primary-button" id="saveSettings">Save preferences</button>
+        <p id="settingsMessage" class="hint"></p>
+      </div>
+    </section>
+
+    <footer>ContentCraft AI · Your ideas, your creativity.</footer>
+  </main>
+
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>
